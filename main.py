@@ -2,8 +2,7 @@ from apicem import *
 from datetime import datetime
 import json
 
-def get_resources():
-#def get_resources(event, context):
+def get_resources(event, context):
     response = get(api="network-device")
 
     response_json = response.json()
@@ -19,9 +18,9 @@ def format_resources(resources):
 
 def format_resource(resource):
     
-    location_id = resource["location"]
-    
-    location_details = get_location_details(location_id)
+    #cisco api: fetch location data is very very slow...
+    #location_id = resource["location"]
+    #location_details = get_location_details(location_id)
     return {
         'base': {
             'name': resource["hostname"],
@@ -33,7 +32,7 @@ def format_resource(resource):
             'appliance': {
                 "type_id": '1',
                 "family" : resource["family"],
-                "location": location_details
+               #"location": location_details
             }
         }
     }
@@ -55,5 +54,3 @@ def get_location_details(location_id):
         }
     except:
         pass
-
-get_resources()
