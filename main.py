@@ -39,17 +39,17 @@ def format_resource(resource):
 
 def get_location_details(location_id):
     try:
-        print location_id
-        response = get(api="location/"+ location_id)
-        response_json = response.json()
-        data = response_json["response"]
-        latitude, longitude =data["geographicalAddress"].split("/")
+   #     print location_id
+   #     response = get(api="location/"+ location_id)
+   #     response_json = response.json()
+   #     data = response_json["response"]
+   #     latitude, longitude =data["geographicalAddress"].split("/")
     
         return {
                 "city": {
-                  "latitude": latitude,
-                  "longitude": longitude,
-                  "name": data["locationName"]
+                      "latitude": '-8.233237111274553',
+                      "longitude":'-57.30468749999999',
+                      "name": 'dummy city'
                 }
         }
     except:
