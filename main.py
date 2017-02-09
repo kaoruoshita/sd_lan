@@ -19,8 +19,8 @@ def format_resources(resources):
 def format_resource(resource):
     
     #cisco api: fetch location data is very very slow...
-    #location_id = resource["location"]
-    #location_details = get_location_details(location_id)
+    location_id = resource["location"]
+    location_details = get_location_details(location_id)
     return {
         'base': {
             'name': resource["hostname"],
@@ -32,7 +32,7 @@ def format_resource(resource):
             'appliance': {
                 "type_id": '1',
                 "family" : resource["family"],
-               #"location": location_details
+                "location": location_details
             }
         }
     }
