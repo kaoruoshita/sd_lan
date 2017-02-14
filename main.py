@@ -1,6 +1,7 @@
 from apicem import *
 from datetime import datetime
 import json
+import apicem_config
 
 def get_resources(event, context):
     response = get(api="network-device")
@@ -24,7 +25,8 @@ def format_resource(resource):
     return {
         'base': {
             'name': resource["hostname"],
-            'provider_created_at': datetime.utcnow().isoformat() + "Z"
+            'provider_created_at': datetime.utcnow().isoformat() + "Z",
+            'native_portal_link': 'https://' + apicem_config.ip
         },
         'id': resource.get("managementIpAddress"),
         'type': 'appliance',
