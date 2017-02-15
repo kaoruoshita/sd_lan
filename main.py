@@ -28,11 +28,11 @@ def format_resource(resource):
             'provider_created_at': datetime.utcnow().isoformat() + "Z",
             'native_portal_link': 'https://' + apicem_config.ip
         },
-        'id': resource.get("managementIpAddress"),
+        'id': resource["id"],
         'type': 'appliance',
         'details': {
             'appliance': {
-                "type_id": '1',
+                "type_id": resource["type"],
                 "family" : resource["family"],
                 "location": location_details
             }
