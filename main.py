@@ -22,6 +22,7 @@ def format_resource(resource):
     #cisco api: fetch location data is very very slow...
     location_id = resource["location"]
     location_details = get_location_details(location_id)
+    state = _map_status(resource["reachabilityStatus"])
     return {
         'base': {
             'name': resource["hostname"],
@@ -34,10 +35,21 @@ def format_resource(resource):
             'appliance': {
                 "type_id": resource["type"],
                 "family" : resource["family"],
-                "location": location_details
+                "location": location_details,
             }
+        },
+        'metadata': {
+            "provider_specific": {
+                "state": state,
+            },
         }
     }
+
+def _map_status(native_state):
+    if native_state == 'Reachable':
+        return 'Active'
+    else:
+        return 'Disabled'
 
 def get_location_details(location_id):
     try:
