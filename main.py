@@ -75,12 +75,10 @@ def format_flows(flows):
 
 def format_flow(flow):
     flow_id = flow["id"]
-    #print flow_id
 
     response_flow_details = get(api="flow-analysis" + "/" + flow_id)
     response_flow_details_json = response_flow_details.json()
     flow_details = response_flow_details_json["response"]
-    #print(json.dumps(flow_details["networkElementsInfo"], indent=4))
 
     return {
         'base': {
